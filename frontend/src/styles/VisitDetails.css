@@ -1,0 +1,155 @@
+.visit-details-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.visit-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.visit-details-header h1 {
+  color: var(--text-color);
+  font-size: 1.875rem;
+}
+
+.visit-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.edit-button {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-weight: 500;
+  transition: background-color 0.2s;
+  text-decoration: none;
+}
+
+.edit-button:hover {
+  background-color: var(--primary-dark);
+  text-decoration: none;
+}
+
+.delete-button {
+  background-color: var(--danger-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: var(--radius);
+  font-weight: 500;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: var(--danger-dark);
+}
+
+.visit-info-card {
+  background-color: var(--card-background);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.visit-info-header {
+  padding: 1.25rem;
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.visit-info-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.visit-date {
+  display: block;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  opacity: 0.9;
+}
+
+.visit-info-content {
+  padding: 1.5rem;
+}
+
+.info-group {
+  margin-bottom: 1.25rem;
+}
+
+.info-group:last-child {
+  margin-bottom: 0;
+}
+
+.info-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: var(--text-color);
+}
+
+.info-group p {
+  color: var(--text-light);
+}
+
+.documents-section {
+  background-color: var(--card-background);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+}
+
+.documents-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.documents-header h2 {
+  font-size: 1.25rem;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.upload-button {
+  display: inline-block;
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.upload-button:hover {
+  background-color: var(--secondary-dark);
+}
+
+@media (max-width: 768px) {
+  .visit-details-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .visit-actions {
+    width: 100%;
+  }
+
+  .edit-button,
+  .delete-button {
+    flex: 1;
+    text-align: center;
+  }
+}

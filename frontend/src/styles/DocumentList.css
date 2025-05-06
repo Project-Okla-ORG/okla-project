@@ -1,0 +1,71 @@
+.document-list {
+  margin-top: 1rem;
+}
+
+.no-documents {
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-light);
+  background-color: #f9fafb;
+  border-radius: var(--radius);
+  border: 1px dashed var(--border-color);
+}
+
+.document-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+  margin-bottom: 0.75rem;
+  background-color: var(--card-background);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.document-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.document-icon {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+}
+
+.document-info {
+  flex: 1;
+}
+
+.document-name {
+  display: block;
+  font-weight: 500;
+  color: var(--text-color);
+  margin-bottom: 0.25rem;
+  text-decoration: none;
+}
+
+.document-name:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+.document-meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.875rem;
+  color: var(--text-light);
+}
+
+.delete-document-button {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  transition: color 0.2s;
+}
+
+.delete-document-button:hover {
+  color: var(--danger-color);
+}
