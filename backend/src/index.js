@@ -38,9 +38,11 @@ async function getSecrets(secretName) {
       SecretId: secretName,
     })
     const response = await secretsManager.send(command)
-    return JSON.parse(response.SecretString)
+    const secrets = JSON.parse(response.SecretString)
+    console.log("✅ Retrieved secrets:", Object.keys(secrets))
+    return secrets
   } catch (error) {
-    console.error("Error retrieving secrets:", error)
+    console.error("❌ Error retrieving secrets:", error)
     throw error
   }
 }
@@ -52,14 +54,11 @@ async function initializeApp() {
   try {
     // Get database credentials from AWS Secrets Manager
     const dbSecrets = await getSecrets(process.env.DB_SECRET_NAME)
+    console.log("✅ Connecting to database at:", dbSecrets.DATABASE_URL.split('@')[1])
 
-    // Create database connection pool
+    // Create database connection pool using DATABASE_URL
     dbPool = new Pool({
-      host: dbSecrets.host,
-      port: dbSecrets.port,
-      database: dbSecrets.dbname,
-      user: dbSecrets.username,
-      password: dbSecrets.password,
+      connectionString: dbSecrets.DATABASE_URL,
       ssl: {
         rejectUnauthorized: false,
       },
@@ -67,7 +66,7 @@ async function initializeApp() {
 
     // Test database connection
     await dbPool.query("SELECT NOW()")
-    console.log("Database connection successful")
+    console.log("✅ Database connection successful")
 
     // Export database pool for use in routes
     app.locals.db = dbPool
@@ -84,10 +83,10 @@ async function initializeApp() {
 
     // Start server
     app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`)
+      console.log(`🚀 Server running on port ${PORT}`)
     })
   } catch (error) {
-    console.error("Failed to initialize application:", error)
+    console.error("❌ Failed to initialize application:", error)
     process.exit(1)
   }
 }
@@ -100,5 +99,5 @@ process.on("SIGINT", async () => {
   process.exit(0)
 })
 
-// Initialize the application
+// Start the app
 initializeApp()
