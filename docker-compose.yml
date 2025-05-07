@@ -1,0 +1,48 @@
+version: '3.9'
+
+services:
+  backend:
+    image: vinaybabuminnakanti/patient-health-backend:latest
+    #build:
+      #context: ./backend
+      #dockerfile: Dockerfile
+    container_name: patient-health-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - AWS_REGION=us-east-2
+      - DB_SECRET_NAME=patient-health-system-secrets
+      - PORT=5000
+    networks:
+      - okla
+
+  frontend:
+    image: vinaybabuminnakanti/patient-health-frontend:latest
+    container_name: patient-health-frontend
+    #build:
+      #context: ./frontend
+      #dockerfile: Dockerfile
+      #args:
+      #  - REACT_APP_API_URL=http://18.191.114.96:5000/api
+    ports:
+      - "80:80"
+    networks:
+      - okla
+
+  python-service:
+    image: vinaybabuminnakanti/patient-health-python:latest
+    container_name: patient-health-python
+    #build:
+      #context: ./python-service
+     # dockerfile: Dockerfile
+    ports:
+      - "5001:5001"
+    environment:
+      - AWS_REGION=us-east-2
+      - DB_SECRET_NAME=patient-health-system-secrets
+      - PORT=5001
+    networks:
+      - okla
+networks:
+  okla:
+    driver: bridge
