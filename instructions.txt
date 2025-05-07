@@ -1,0 +1,41 @@
+Docker build and run INstructions
+
+1. Backend
+    cd backend/health-records-service
+docker build -t patient-health-backend .
+
+docker run -d \
+  --name patient-health-backend \
+  --network okla \
+  -p 5000:5000 \
+  -e AWS_REGION=us-east-2 \
+  -e DB_SECRET_NAME=patient-health-system-secrets \
+  -e PORT=5000 \
+  patient-health-backend:latest
+
+2. Frontend
+    cd frontend
+    
+    
+    docker run -d \
+  --name patient-health-frontend \
+  --network okla \
+  -p 80:80 \
+  -e REACT_APP_API_URL=/api \
+  patient-health-frontend:latest
+
+
+  3. python service
+  cd backend/python-service
+docker build -t patient-health-python .
+
+docker run -d \
+  --name patient-health-python \
+  --network okla \
+  -p 5001:5001 \
+  -e AWS_REGION=us-east-2 \
+  -e S3_BUCKET_NAME=patient-health-history-bucket \
+  -e DB_SECRET_NAME=patient-health-system-secrets \
+  -e PORT=5001 \
+  patient-health-python:latest
+
