@@ -30,7 +30,8 @@ router.post("/register", async (req, res) => {
     )
 
     // Generate JWT token
-    const token = jwt.sign({ userId: result.rows[0].id }, process.env.JWT_SECRET, { expiresIn: "1d" })
+    const jwtSecret = req.app.locals.jwtSecret
+    const token = jwt.sign({ userId: result.rows[0]?.id }, jwtSecret, { expiresIn: "1d" })
 
     res.status(201).json({
       message: "User registered successfully",
@@ -72,7 +73,8 @@ router.post("/login", async (req, res) => {
     }
 
     // Generate JWT token
-    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: "1d" })
+    const jwtSecret = req.app.locals.jwtSecret
+    const token = jwt.sign({ userId: user.id }, jwtSecret, { expiresIn: "1d" })
 
     res.json({
       message: "Login successful",

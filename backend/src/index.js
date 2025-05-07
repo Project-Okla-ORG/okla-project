@@ -53,7 +53,8 @@ let dbPool
 async function initializeApp() {
   try {
     // Get database credentials from AWS Secrets Manager
-    const dbSecrets = await getSecrets(process.env.DB_SECRET_NAME)
+    const dbSecrets = await getSecrets(process.env.DB_SECRET_NAME);
+    app.locals.jwtSecret = dbSecrets.JWT_SECRET;
     console.log("✅ Connecting to database at:", dbSecrets.DATABASE_URL.split('@')[1])
 
     // Create database connection pool using DATABASE_URL
