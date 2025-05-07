@@ -42,7 +42,8 @@ jobs:
 
       - name: Decode EC2 Login Key
         run: |
-          echo ${{ secrets.EC2_SSH_KEY }} | base64 --decode > ec2_key.pem
+          echo "${{ secrets.EC2_SSH_KEY }}" | base64 --decode > ec2_key.pem
+          chmod 600 ec2_key.pem
 
       - name: SSH into EC2 Instance
         run: |
