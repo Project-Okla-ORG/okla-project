@@ -17,7 +17,7 @@ docker run -d \
     cd frontend
     
     docker build -t patient-health-frontend \
-  --build-arg REACT_APP_API_URL=http://3.135.214.63:5000/api \
+  --build-arg REACT_APP_API_URL=http://18.191.114.96:5000/api \
   .
     docker run -d \
   --name patient-health-frontend \
