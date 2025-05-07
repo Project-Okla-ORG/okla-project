@@ -16,6 +16,9 @@ jobs:
       - name: login to docker hub
         run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
+      - name: List the folder structure
+        run: ls -la
+
 # Docker Imgae build and push for Backend
       - name: build docker image for backend
         run: docker build -t vinaybabuminnakanti/patient-health-backend:latest .
