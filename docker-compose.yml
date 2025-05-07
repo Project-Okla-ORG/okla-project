@@ -30,7 +30,7 @@ services:
   python-service:
     container_name: patient-health-python
     build:
-      context: ./backend/python-service
+      context: ./python-service
       dockerfile: Dockerfile
     ports:
       - "5001:5001"
@@ -43,4 +43,3 @@ services:
 networks:
   okla:
     driver: bridge
-    
