@@ -9,7 +9,8 @@ export function authenticateToken(req, res, next) {
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET)
+    const jwtSecret = req.app.locals.jwtSecret
+    const decoded = jwt.verify(token, jwtSecret)
     req.user = decoded
     next()
   } catch (error) {
