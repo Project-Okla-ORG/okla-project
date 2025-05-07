@@ -21,7 +21,7 @@ jobs:
 
 # Docker Imgae build and push for Backend
       - name: build docker image for backend
-        run: docker build -t vinaybabuminnakanti/patient-health-backend:latest .
+        run: docker build -t vinaybabuminnakanti/patient-health-backend:latest -f backend/Dockerfile ./backend
 
       - name: push docker image for backend
         run: docker push vinaybabuminnakanti/patient-health-backend:latest
@@ -35,7 +35,7 @@ jobs:
 
 # Docker Imgae build and push for Python Service
       - name: build docker image for python service
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/patient-health-python:latest .
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/patient-health-python:latest -f python-service/Dockerfile ./python-service
 
       - name: push docker image for python service
         run: docker push ${{ secrets.DOCKER_USERNAME }}/patient-health-python:latest
